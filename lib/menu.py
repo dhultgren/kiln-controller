@@ -222,7 +222,11 @@ class OvenDisplay(threading.Thread):
             new_text.append('Kiln on standby')
         else:
             time_left = timedelta(seconds=self.oven.totaltime - self.oven.runtime)
-            new_text.append(self.oven.profile.name.ljust(10, ' ')[:10:] + ' ' + (datetime.now() + time_left).strftime("%H:%M"))
+            # Format timedelta as HH:MM
+            hours, remainder = divmod(int(time_left.total_seconds()), 3600)
+            minutes, _ = divmod(remainder, 60)
+            time_str = f"{hours:02d}:{minutes:02d}"
+            new_text.append(self.oven.profile.name.ljust(10, ' ')[:10:] + ' ' + time_str)
         lcd.set_text(new_text, True)
 
 class Oven():
