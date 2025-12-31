@@ -73,7 +73,7 @@ sensor_time_wait = 5
 # inverted so that a smaller number means more integral action.
 pid_kp = 20   # Proportional 25,200,200
 pid_ki = 100   # Integral
-pid_kd = 1000  # Derivative
+pid_kd = 300  # Derivative
 
 
 ########################################################################
